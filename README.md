@@ -1,5 +1,7 @@
 # NetDiffusion: High-Fidelity Synthetic Network Traffic Generation
 
+<img src="https://github.com/noise-lab/NetDiffusion_Code/assets/47127634/a24e88af-99cb-4a69-9130-d9e84e5a0fbd" width="300"/>
+
 ## Introduction
 
 NetDiffusion is an innovative tool designed to address the challenges of obtaining high-quality, labeled network traces for machine learning tasks in networking. Privacy concerns, data staleness, and the limited availability of comprehensive datasets have long hindered research and development efforts. NetDiffusion leverages a controlled variant of a Stable Diffusion model to generate synthetic network traffic that not only boasts high fidelity but also adheres to protocol specifications.
