@@ -1,3 +1,6 @@
 [submodule "fine_tune/kohya_ss_fork"]
 	path = fine_tune/kohya_ss_fork
 	url = https://github.com/Chasexj/kohya_ss_fork
+[submodule "fine_tune/sd-webui-fork"]
+	path = fine_tune/sd-webui-fork
+	url = https://github.com/Chasexj/stable-diffusion-webui-fork
