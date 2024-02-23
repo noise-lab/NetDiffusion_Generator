@@ -15,9 +15,12 @@ Our approach outperforms current state-of-the-art synthetic trace generation met
 - **Versatility:** Supports a wide array of network tasks, extending the utility of synthetic traces beyond machine learning applications.
 - **Open Source:** NetDiffusion is open-source, encouraging contributions and modifications from the community to meet diverse needs.
 
-## Installation
+## Installation (Current support for Linux only)
 
 ```bash
+# SSH to Linux server via designated port (see following for example)
+ssh -L 7860:LocalHost:7860 username@server_address
+
 # Clone the repository
 git clone git@github.com:noise-lab/NetDiffusion_Generator.git
 
@@ -28,14 +31,26 @@ cd NetDiffusion_Generator
 pip install -r requirements.txt
 ```
 
-## Data Preprocessing
+## Import Data
+Store raw pcaps used for fine-tuning into 'NetDiffusion_Code/data/fine_tune_pcaps' with the application/service labels as the filenames, e.g.,'netflix_01.pcap'.
 
+## Data Preprocessing and Fine-Tune Task Creation
 ```bash
-# Data Preparation
-git clone git@github.com:noise-lab/NetDiffusion_Generator.git
+# Navigate to preprocessing dir
+cd data_preprocessing/
 
-# Navigate to the project directory
-cd NetDiffusion_Generator
+# Run preprocessing conversions
+python3 pcap_to_img.py
 
-# Install dependencies in the virtual env of choice (we recommend Conda)
-pip install -r requirements.txt
+# Navigate to fine-tune dir and the khoya subdir for task creation (replace the number in 20_network with the average number of pcaps per traffic type used for fine-tuning)
+cd ../fine_tune/kohya_ss_fork/model_training/
+mkdir -p example_task/{image/20_network,log,model}
+
+# leverage Stable Diffusion WebUI for initial caption creation
+cd ../../sd-webui-fork/stable-diffusion-webui/
+cd
+# Lunch WebUI
+bash webui.sh
+```
+1. Open the WebUI via the ssh port on the preferred browser, example address: http://localhost:7860/
+2. Under extras/batch_from_directory, enter the absolute path for `/NetDiffusion_Code/data/preprocessed_fine_tune_imgs` and `/NetDiffusion_Code/fine_tune/kohya_ss_fork/model_training/test_task/image/1_network` as the input/output directories.
