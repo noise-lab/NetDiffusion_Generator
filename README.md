@@ -34,7 +34,7 @@ pip install -r requirements.txt
 ## Import Data
 Store raw pcaps used for fine-tuning into 'NetDiffusion_Code/data/fine_tune_pcaps' with the application/service labels as the filenames, e.g.,'netflix_01.pcap'.
 
-## Data Preprocessing and Fine-Tune Task Creation
+## Data Preprocessing
 ```bash
 # Navigate to preprocessing dir
 cd data_preprocessing/
@@ -53,4 +53,26 @@ cd
 bash webui.sh
 ```
 1. Open the WebUI via the ssh port on the preferred browser, example address: http://localhost:7860/
-2. Under extras/batch_from_directory, enter the absolute path for `/NetDiffusion_Code/data/preprocessed_fine_tune_imgs` and `/NetDiffusion_Code/fine_tune/kohya_ss_fork/model_training/test_task/image/1_network` as the input/output directories.
+2. Under `extras/batch_from_directory`, enter the absolute path for `/NetDiffusion_Code/data/preprocessed_fine_tune_imgs` and `/NetDiffusion_Code/fine_tune/kohya_ss_fork/model_training/test_task/image/1_network` as the input/output directories.
+2. Under `extras/batch_from_directory`, set the `scale to` parameter to `width = 816` and `height = 768` for resource-friendly fine-tuning (adjust based on resource availability).
+3. Enable the `caption` parameter under `extras/batch_from_directory` and click `generate`.
+4. Terminate `webui.sh`
+
+```bash
+# Change the caption prompt for explicit prompt-to-image correlation,
+# For example, 'pixelated network data, type-3' refers to NetFlix pcap,
+# Adjust the script based on fine-tuning task.
+cd ../../ && python3 caption_changing.py
+```
+
+## Fine-Tuning
+```bash
+# Navigate to fine-tuning directory
+cd kohya_ss_fork
+# Grant execution access
+chmod +x ./setup.sh
+# Set up accelerate environment (gpu and fp16 recommended)
+accelerate config
+# Fine-tune interface initialization
+s
+```
