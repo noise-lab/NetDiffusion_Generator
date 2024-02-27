@@ -108,6 +108,7 @@ Note that extensive adjustments on the generation and ControlNet parameters may 
 2. Navigate to the `/NetDiffusion_Code/post-generation/` folder
 ```bash
 # Run the following to do the post-generation heuristic for reconversion back to pcaps and protocol compliance checking.
+# Adjust the color processing threshold in color_processor.py as required for best generation results.
 python3 color_processor.py && python3 img_to_nprint.py && python3 mass_reconstruction.py
 ```
 This completes the post-generation pipeline with the final nprints and pcaps stored in `/NetDiffusion_Code/data/replayable_generated_nprints` and `/NetDiffusion_Code/data/replayable_generated_pcaps`, respectively.
