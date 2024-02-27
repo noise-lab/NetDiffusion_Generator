@@ -773,22 +773,7 @@ def ackn_initialization_src_dst(generated_nprint):
                 last_src_to_dst_seq.append(generated_nprint.at[index, f'tcp_seq_{i}'])
 
 
-    #     # If the source has switched, use the last sequence and length from the previous source to generate the acknowledgment number
-    #     if src_ip != current_src:
-    #         if current_src in last_seq:
-    #             last_packet_seq = last_seq[current_src]['seq']
-    #             last_packet_length = last_seq[current_src]['length']
-    #             new_ackn = last_packet_seq + last_packet_length
-    #             new_ackn_bin = format(new_ackn, '032b')
-    #             for i in range(32):
-    #                 generated_nprint.at[index, f'tcp_ackn_{i}'] = int(new_ackn_bin[i])
-    #         current_src = src_ip
 
-    #     # Update the dictionary with the current packet's sequence number and data length
-    #     curr_seq_bin = ''.join(str(generated_nprint.at[index, f'tcp_seq_{i}']) for i in range(32))
-    #     curr_seq_int = int(curr_seq_bin, 2)
-    #     data_length = compute_tcp_segment_length(generated_nprint.iloc[index])
-    #     last_seq[src_ip] = {'seq': curr_seq_int, 'length': data_length}
 
     return generated_nprint
 
@@ -876,14 +861,7 @@ def ipv4_tl_formatting_udp(generated_nprint, formatted_nprint):
         ipv4_tl_value = binary_to_decimal(ipv4_tl_binary)
         ipv4_hl_value = binary_to_decimal(ipv4_hl_binary) * 4  # Convert from 4-byte words to bytes
         udp_len_value = binary_to_decimal(udp_len_binary) # Convert from 4-byte words to bytes
-        # print(f'Packet {counter}:')
-        # print('ipv4 total length in bytes:')
-        # print(ipv4_tl_value)
-        # print('ipv4 header length in bytes:')
-        # print(ipv4_hl_value)
-        # print('tcp doff in bytes:')
-        # print(tcp_doff_value)
-        # print()
+
         counter +=1
 
 
@@ -992,30 +970,6 @@ def main(generated_nprint_path, formatted_nprint_path, output, nprint):
 
     
 
-
-
-# Integrety assured:
-
-# IP:
-# version (IPv4)
-# duo end-addresses (randomly generated and directions sampled from original distribution)
-        # Internet IPs need to be preserved - if fits the scenarios
-# protocol (majority field presence voting)
-# options (default to non)
-# ttl (allows for generative characteristic but ensured to be > 0)
-        # sampling.
-# hl (allows for generative characteristic but pad missing bit (-1) with randomly generated 0 or 1 to prevent corrupted header and length)
-# identification number (randomly generated but consistent with direction)
-# fragmentation bit (uniformly set to do-not-fragment to avoid fragementation in modern Internet)
-
-# TCP:
-# port numbers (randomly generated to be consistent with IP addresses)
-        # Internet IPs need to be preserved - if fits the scenarios
-# options (must be continuous and has fixed length, we use closest approximation here)
-# data offset (header guaranteed to be at least 20 bytes and combined with length of options)
-# sequence numbers (randomly initialization and subsequent increment calculated based on segment lengths)
-# three way handshake (initialized with syn, ack/syn, ack)
-# ackowledge number (In progress)
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='pcap reconstruction')
