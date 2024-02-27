@@ -47,9 +47,8 @@ python3 pcap_to_img.py
 cd ../fine_tune/kohya_ss_fork/model_training/
 mkdir -p example_task/{image/20_network,log,model}
 
-# leverage Stable Diffusion WebUI for initial caption creation
+# Leverage Stable Diffusion WebUI for initial caption creation
 cd ../../sd-webui-fork/stable-diffusion-webui/
-cd
 # Lunch WebUI
 bash webui.sh
 ```
@@ -61,7 +60,7 @@ bash webui.sh
 
 ```bash
 # Change the caption prompt for explicit prompt-to-image correlation,
-# For example, 'pixelated network data, type-3' refers to NetFlix pcap,
+# For example, 'pixelated network data, type-0' refers to NetFlix pcap,
 # Adjust the script based on fine-tuning task.
 cd ../../ && python3 caption_changing.py
 ```
@@ -85,4 +84,21 @@ bash gui.sh
 4. Under `LoRA\Training\Parameters\Basic`, adjust the Max Resolution to match the resolution from data preprocessing, e.g., 816,768.
 5. Click on Start Training to begin the fine-tuning.
 
-
+## Generation
+```bash
+# Copy the fine-tuned LoRA model (adjust path namings as needed) to Stable Diffusion WebUI
+cp model_training/test_task/model/test_task_model.safetensors ../sd-webui-fork/stable-diffusion-webui/models/Lora/
+# Navigate to the generation directory
+cd ../sd-webui-fork/stable-diffusion-webui/
+# Initialize Stable Diffusion WebUI
+bash webui.sh
+```
+1. Open the WebUI via the ssh port on the preferred browser, example address: http://localhost:7860/
+2. Install ControlNet extension for the WebUI and restart the WebUI: https://github.com/Mikubill/sd-webui-controlnet
+3. To generate a image representation of a network trace, enter the corresponding caption prompt with the LoRA model extension under 'txt2img'. For example 'pixelated network data, type-0 \<lora:test_task_model:1\>' for NetFlix data.
+4. Adjust the generation resolution to match the resolution from data preprocessing, e.g., 816,768.
+5. Adjust the seed to match the seed used in fine-tuning, default is `1234`.
+6. Enable Hires.fix to scale to `1088, 1024`.
+7. From training data, sample a real pcap image (that belongs to the same category as the desired synthetic traffic) as input to the ControlNet interface, and set the Control Type (we recommend canny).
+8. Click `Generate` to complete the generation.
+Note that extensive adjustments on the generation and ControlNet parameters may be needed to yield the best generation result as the generation tasks and training data differ from each other.
