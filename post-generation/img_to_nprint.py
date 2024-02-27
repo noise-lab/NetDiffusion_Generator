@@ -32,13 +32,7 @@ def rgba_to_ip(rgba):
     ip_parts = tuple(map(str, rgba))
     ip = '.'.join(ip_parts)
     return ip
-# The script defines a function int_to_rgba that takes an integer A as input and returns the corresponding RGBA color value based on the following conditions:
-# If A is equal to 1, the RGBA value is (255, 0, 0, 255) (red color with full opacity)
-# If A is equal to 0, the RGBA value is (0, 255, 0, 255) (green color with full opacity)
-# If A is equal to -1, the RGBA value is (0, 0, 255, 255) (blue color with full opacity)
-# If A is greater than 1, the RGBA value is (255, 0, 0, A) (red color with the alpha channel set to A)
-# If A is less than -1, the RGBA value is (0, 0, 255, abs(A)) (blue color with the alpha channel set to the absolute value of A)
-# If A is not equal to any of these values, the function returns None.
+
 def int_to_rgba(A):
     if A == 1:
         rgba = (255, 0, 0, 255)
@@ -53,9 +47,7 @@ def int_to_rgba(A):
     else:
         rgba = None
     return rgba
-# In this function, the input RGBA color value rgba is checked against each of the same conditions as in the int_to_rgba function,
-# and the corresponding integer value A is returned. The last two conditions check if the RGBA color value has a red or blue channel
-# set to its maximum value (indicating a solid color of that channel), and extract the alpha channel value as the integer value A.
+
 def rgba_to_int(rgba):
     if rgba == (255, 0, 0, 255):
         A = 1
