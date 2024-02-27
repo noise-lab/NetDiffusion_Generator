@@ -42,7 +42,8 @@ cd data_preprocessing/
 # Run preprocessing conversions
 python3 pcap_to_img.py
 
-# Navigate to fine-tune dir and the khoya subdir for task creation (replace the number in 20_network with the average number of pcaps per traffic type used for fine-tuning)
+# Navigate to fine-tune dir and the khoya subdir for task creation
+# (replace the number in 20_network with the average number of pcaps per traffic type used for fine-tuning)
 cd ../fine_tune/kohya_ss_fork/model_training/
 mkdir -p example_task/{image/20_network,log,model}
 
@@ -53,7 +54,7 @@ cd
 bash webui.sh
 ```
 1. Open the WebUI via the ssh port on the preferred browser, example address: http://localhost:7860/
-2. Under `extras/batch_from_directory`, enter the absolute path for `/NetDiffusion_Code/data/preprocessed_fine_tune_imgs` and `/NetDiffusion_Code/fine_tune/kohya_ss_fork/model_training/test_task/image/1_network` as the input/output directories.
+2. Under `extras/batch_from_directory`, enter the absolute path for `/NetDiffusion_Code/data/preprocessed_fine_tune_imgs` and `/NetDiffusion_Code/fine_tune/kohya_ss_fork/model_training/test_task/image/20_network` as the input/output directories.
 2. Under `extras/batch_from_directory`, set the `scale to` parameter to `width = 816` and `height = 768` for resource-friendly fine-tuning (adjust based on resource availability).
 3. Enable the `caption` parameter under `extras/batch_from_directory` and click `generate`.
 4. Terminate `webui.sh`
@@ -71,8 +72,17 @@ cd ../../ && python3 caption_changing.py
 cd kohya_ss_fork
 # Grant execution access
 chmod +x ./setup.sh
+# Set up configuration
+./setup.sh
 # Set up accelerate environment (gpu and fp16 recommended)
 accelerate config
 # Fine-tune interface initialization
-s
+bash gui.sh
 ```
+1. Open the fine-tuning interface via the ssh port on the preferred browser, example address: http://localhost:7860/
+2. Under `LoRA\Training`, load the configuration file via the absolute path for '/NetDiffusion_Code/fine_tune/LoraLowVRAMSettings.json'
+3. Under `LoRA\Training\Folders`, enter the absolute paths for `/NetDiffusion_Code/fine_tune/kohya_ss_fork/model_training/test_task/image`,`/NetDiffusion_Code/fine_tune/kohya_ss_fork/model_training/test_task/model`, and `/NetDiffusion_Code/fine_tune/kohya_ss_fork/model_training/test_task/log` for the Image/Output/Logging folders, respectively, and adjust the model name if needed.
+4. Under `LoRA\Training\Parameters\Basic`, adjust the Max Resolution to match the resolution from data preprocessing, e.g., 816,768.
+5. Click on Start Training to begin the fine-tuning.
+
+
