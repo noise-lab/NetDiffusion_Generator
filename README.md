@@ -95,10 +95,19 @@ bash webui.sh
 ```
 1. Open the WebUI via the ssh port on the preferred browser, example address: http://localhost:7860/
 2. Install ControlNet extension for the WebUI and restart the WebUI: https://github.com/Mikubill/sd-webui-controlnet
-3. To generate a image representation of a network trace, enter the corresponding caption prompt with the LoRA model extension under 'txt2img'. For example 'pixelated network data, type-0 \<lora:test_task_model:1\>' for NetFlix data.
+3. To generate an image representation of a network trace, enter the corresponding caption prompt with the LoRA model extension under 'txt2img'. For example 'pixelated network data, type-0 \<lora:test_task_model:1\>' for NetFlix data.
 4. Adjust the generation resolution to match the resolution from data preprocessing, e.g., 816,768.
 5. Adjust the seed to match the seed used in fine-tuning, default is `1234`.
 6. Enable Hires.fix to scale to `1088, 1024`.
 7. From training data, sample a real pcap image (that belongs to the same category as the desired synthetic traffic) as input to the ControlNet interface, and set the Control Type (we recommend canny).
 8. Click `Generate` to complete the generation.
 Note that extensive adjustments on the generation and ControlNet parameters may be needed to yield the best generation result as the generation tasks and training data differ from each other.
+
+## Post-Generation Heuristic Correction
+1. Once enough instances of image representations of desired synthetic traffic are generated, place all of such instances under `/NetDiffusion_Code/data/generated_imgs`.
+2. Navigate to the `/NetDiffusion_Code/post-generation/` folder
+```bash
+# Run the following to do the post-generation heuristic for reconversion back to pcaps and protocol compliance checking.
+python3 color_processor.py && python3 img_to_nprint.py && python3 mass_reconstruction.py
+```
+This completes the post-generation pipeline with the final nprints and pcaps stored in `/NetDiffusion_Code/data/replayable_generated_nprints` and `/NetDiffusion_Code/data/replayable_generated_pcaps`, respectively.
