@@ -1,6 +1,9 @@
 # NetDiffusion: High-Fidelity Synthetic Network Traffic Generation
 
-<img src="https://github.com/noise-lab/NetDiffusion_Code/assets/47127634/a24e88af-99cb-4a69-9130-d9e84e5a0fbd" width="300"/>
+
+
+<img width="1241" alt="Screenshot 2024-02-29 at 3 41 29 PM" src="https://github.com/noise-lab/NetDiffusion_Generator/assets/47127634/804756f9-156e-4796-bea6-00d5d7bb1706">
+
 
 ## Introduction
 
