@@ -115,3 +115,17 @@ Note that extensive adjustments on the generation and ControlNet parameters may 
 python3 color_processor.py && python3 img_to_nprint.py && python3 mass_reconstruction.py
 ```
 This completes the post-generation pipeline with the final nprints and pcaps stored in `/NetDiffusion_Code/data/replayable_generated_nprints` and `/NetDiffusion_Code/data/replayable_generated_pcaps`, respectively.
+
+## Citing NetDiffusion
+```
+@article{jiang2024netdiffusion,
+  title={NetDiffusion: Network Data Augmentation Through Protocol-Constrained Traffic Generation},
+  author={Jiang, Xi and Liu, Shinan and Gember-Jacobson, Aaron and Bhagoji, Arjun Nitin and Schmitt, Paul and Bronzino, Francesco and Feamster, Nick},
+  journal={Proceedings of the ACM on Measurement and Analysis of Computing Systems},
+  volume={8},
+  number={1},
+  pages={1--32},
+  year={2024},
+  publisher={ACM New York, NY, USA}
+}
+```
