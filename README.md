@@ -85,7 +85,7 @@ bash gui.sh
 2. Under `LoRA\Training`, load the configuration file via the absolute path for '/NetDiffusion_Code/fine_tune/LoraLowVRAMSettings.json'
 3. Under `LoRA\Training\Folders`, enter the absolute paths for `/NetDiffusion_Code/fine_tune/kohya_ss_fork/model_training/test_task/image`,`/NetDiffusion_Code/fine_tune/kohya_ss_fork/model_training/test_task/model`, and `/NetDiffusion_Code/fine_tune/kohya_ss_fork/model_training/test_task/log` for the Image/Output/Logging folders, respectively, and adjust the model name if needed.
 4. Under `LoRA\Training\Parameters\Basic`, adjust the Max Resolution to match the resolution from data preprocessing, e.g., 816,768.
-5. Click on Start Training to begin the fine-tuning.
+5. Click on Start Training to begin the fine-tuning. Adjust the fine-tuning parameters as needed due to different generation tasks may have different parameter requirement to yield better synthetic data quality.
 
 ## Generation
 ```bash
