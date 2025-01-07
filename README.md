@@ -31,6 +31,8 @@ cd NetDiffusion_Generator
 
 # Install dependencies in the virtual env of choice (we recommend pyenv, if using conda install using conda_requirements.txt)
 pip install -r requirements.txt
+
+# Install `nprint` from https://nprint.github.io/nprint/install.html
 ```
 
 ## Import Data
