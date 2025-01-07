@@ -21,6 +21,7 @@ Our approach outperforms current state-of-the-art synthetic trace generation met
 ## Installation (Current support for Linux only)
 
 ```bash
+# python version requirement 3.10
 # SSH to Linux server via designated port (see following for example)
 ssh -L 7860:LocalHost:7860 username@server_address
 
