@@ -25,12 +25,11 @@ Our approach outperforms current state-of-the-art synthetic trace generation met
 ssh -L 7860:LocalHost:7860 username@server_address
 
 # Clone the repository
-git clone git@github.com:noise-lab/NetDiffusion_Generator.git
 
 # Navigate to the project directory
 cd NetDiffusion_Generator
 
-# Install dependencies in the virtual env of choice (we recommend Conda)
+# Install dependencies in the virtual env of choice (we recommend pyenv, if using conda install using conda_requirements.txt)
 pip install -r requirements.txt
 ```
 
