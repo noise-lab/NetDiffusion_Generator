@@ -31,6 +31,9 @@ git clone --recurse-submodules https://github.com/noise-lab/NetDiffusion_Generat
 # Create the conda env
 conda create -n NetDiffusion python=3.10
 
+# Install the correct pip version for dependency installation
+pip install pip==21.3.1
+
 # Navigate to the project directory
 cd NetDiffusion_Generator
 
