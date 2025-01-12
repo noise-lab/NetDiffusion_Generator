@@ -28,8 +28,9 @@ ssh -L 7860:LocalHost:7860 username@server_address
 # Clone the repository
 git clone --recurse-submodules https://github.com/noise-lab/NetDiffusion_Generator.git
 
-# Create the conda env
+# Create and activate the conda env
 conda create -n NetDiffusion python=3.10
+conda activate NetDiffusion
 
 # Navigate to the project directory
 cd NetDiffusion_Generator
